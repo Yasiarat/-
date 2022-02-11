@@ -1,0 +1,25 @@
+
+{% extends "index-base.html" %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='form-style.css') }}">
+{% endblock %}
+
+{% block content %}
+    <h2>Авторизация</h2>
+    {% for cat, msg in get_flashed_messages(True) %}
+    <div class="flash {{ cat }}">{{ msg }}</div>
+    {% endfor %}
+    <form class="feedback-form" action="{{ url_for('login') }}" method="post">
+        <p>
+            <label for="username">Введите логин:</label>
+            <input type="text" name="username" id="username">
+        </p>
+        <p>
+           <label for="password">Пароль:</label>
+           <input type="text" name="password" id="password">
+        </p>
+        <input class="btn" type="submit" value="Отправить">
+        </form>
+{% endblock %}
